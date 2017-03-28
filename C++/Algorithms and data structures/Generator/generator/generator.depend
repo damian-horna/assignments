@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1488655677 source:/home/damian/Projects/generator/main.cpp
+	<stdio.h>
+	<ctime>
+	<cmath>
+	<cstdlib>
+	<fstream>
+
