@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1489446472 source:/home/damian/Projects/sorty z osobna/bodies.cpp
+	"header.hpp"
+
+1489446480 /home/damian/Projects/sorty z osobna/header.hpp
+	<stdio.h>
+	<ctime>
+	<cmath>
+	<cstdlib>
+	<fstream>
+
+1489446803 source:/home/damian/Projects/sorty z osobna/main.cpp
+	"header.hpp"
+
