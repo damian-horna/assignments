@@ -1,0 +1,29 @@
+#!/bin/bash
+
+echo "Enter the width of a square: "
+read width
+
+
+for x in `seq 1 $width`
+do
+	echo '* ' | tr -d '\n'
+done
+
+echo -ne '\n'
+
+for y in `seq 1 $(($width-2))`
+do
+	echo '* ' | tr -d '\n'
+	for z in `seq 1 $(($width-2))`
+	do
+		echo '  ' | tr -d '\n'
+	done
+	echo '* '
+done
+
+for w in `seq 1 $width`
+do
+	echo '* ' | tr -d '\n'
+done
+
+echo -ne '\n'

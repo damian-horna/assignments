@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for x in `find . -name "ZAD*" | xargs`
+do 
+mv $x `echo $x | tr [:upper:] [:lower:]`
+done

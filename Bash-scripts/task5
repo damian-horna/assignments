@@ -1,0 +1,13 @@
+#!bin/bash
+
+echo "Directory: "
+read dir
+echo "File: "
+read filename
+echo "New name: "
+read new
+
+for x in `find $dir -name "$filename" | xargs` 
+do
+mv $x $new
+done

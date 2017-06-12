@@ -1,0 +1,13 @@
+#!bin/bash
+
+echo "Good evening?"
+read
+if [ $REPLY == yes ]
+then
+	echo "Good evening!"
+elif [ $REPLY == no ]
+then
+	echo "Good morning!"
+else
+	echo "Unknown command: '$REPLY'"
+fi

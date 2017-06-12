@@ -1,0 +1,13 @@
+#!/bin/bash
+
+until false
+do
+	for user in `who | tr -s ' ' | cut -d ' ' -f 1 | sort | uniq | tr '\n' ' '`
+	do
+		if [ $user == $1 ]
+		then
+			echo "'$1' logged in."
+			exit 0
+		fi
+	done
+done
