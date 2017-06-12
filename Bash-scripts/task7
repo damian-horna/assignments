@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "Directory name: "
+read dir
+if [ -z $dir ] 
+then
+	"Directory name is empty."
+elif [ -f $dir ] 
+then
+	"'$dir' is not a directory."
+else
+	tar czf `date | tr ' ' '-' | cut -d '-' -f 1,2,3,4 | tr ':' '.'` $dir
+fi
+

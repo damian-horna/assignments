@@ -1,0 +1,10 @@
+#!bin/bash
+
+echo 'First number: '
+read x
+echo 'Second number: '
+read y
+case $1 in
+	"addition") echo "$x + $y = `expr $x + $y`" ;;
+esac
+

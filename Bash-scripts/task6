@@ -1,0 +1,8 @@
+#!/bin/bash
+
+result=1
+for x in `seq 1 $1`
+do
+((result*=x))
+done
+echo "$1 factorial is: $result" 
