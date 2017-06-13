@@ -1,0 +1,10 @@
+#!/bin/bash
+
+argumenty=`echo $@ | tr ' ' '\n' | tail -n +2 | tr '\n' ' '`
+
+for x in $argumenty
+do 
+nowanazwa=`date ; echo $czasutw ; echo $x`
+nowanazwa2=`echo $nowanazwa | tr ' ' '_'`
+cp $x $1/$nowanazwa2
+done

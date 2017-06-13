@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+for x in $@
+do
+	for y in `find $x -name "*.py"`
+	do
+		first=`cat $y | head -n 1`	
+		if [ "$first" != "#!/usr/bin/env python" ]
+		then
+			file=`cat $y` 
+			echo "#!/usr/bin/env python" > $y
+			echo "$file" >> $y
+		fi
+	done
+
+
+
+	for z in `find $x -name "*.sh"`
+	do
+		firstt=`cat $z | head -n 1`
+		if [ "$firstt" != "#!/bin/bash" ]
+		then
+			filee=`cat $z`
+			echo "#!/bin/bash" > $z
+			echo "$file" >> $z
+		fi
+	done
+done

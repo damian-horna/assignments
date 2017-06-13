@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $1!="joined" -o $1!="underline" -o $1!="uppercase" -o $1!="dashes" ] ; then
+echo "wrong format"
+fi 
+
+if [ -z $1 ] ; then
+echo "no arguments"
+fi
+
+case $1 in
+"joined") joined=`echo $@ | tr ' ' '\n' | tail -n +2 | tr -d '\n'` ; mkdir $joined ;;
+"underline") underline=`echo $@ | tr ' ' '\n' | tail -n +2 | tr '\n' '_'` ; mkdir $underline ;;
+"uppercase") uppercase=`echo $@ | tr ' ' '\n' | tail -n +2 | tr '\n' '_' | tr [:lower:] [:upper:]` ; mkdir $uppercase ;;
+"dashes") dashes=`echo $@ | tr ' ' '\n' | tail -n +2 | tr '\n' '-'`; mkdir $dashes ;;
+esac
+

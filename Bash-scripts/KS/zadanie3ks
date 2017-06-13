@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while true
+do
+	bound=`cat $1 | wc -l`
+	s=`cat /dev/random | tr -dc [:digit:] | tr -dc [1-$bound] | fold -w 1 | head -n 1`
+	read w 
+	if [ "$w" = "thats enough" ] ; then
+		exit
+	fi
+	echo "`cat $1 | head -n $s | tail -n 1`"
+done

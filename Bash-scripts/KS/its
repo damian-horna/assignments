@@ -1,0 +1,37 @@
+#!/bin/bash
+
+godzinka=`date | tr ' ' '\n' | head -n 4 | tail -n 1 | cut -d ':' -f 1`
+
+case $1 in
+"late") if [ $godzinka -gt 19 ] 
+then 
+       	exit 0 
+else
+	exit 1
+fi
+;;
+"early") if  [ $godzinka -lt 10 ]
+then
+	exit 0
+else
+	exit 1
+fi
+;;
+"day") if [ $godzinka -gt 5 -a $godzinka -lt 20 ]
+then
+	exit 0
+else 
+	exit 1
+fi
+;;
+"night") if [ $godzinka -gt 20 -a $godzinka -lt 5 ]
+then
+	exit 0
+else
+	exit 1
+fi
+;;
+"morning") ;;
+"lunchtime") ;;
+"evening") ;;
+esac
