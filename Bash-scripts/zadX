@@ -32,12 +32,13 @@ then
 	done
 fi
 
+
 jak=$1
 katalog=$2
 
+
 while [ -n "$jak" ] 
 do
-
 
 	if [ "$jak" == "a" ]
 	then
@@ -51,13 +52,11 @@ do
 		echo "Błędny parametr do sortowania."
 	fi
 
-
 	n=`ls -l | grep ^- | wc -l`
 	echo "Plików zwykłych w katalogu '$katalog': $n"
 
 	m=`ls -l | grep ^d | wc -l`
 	echo -ne "Podkatalogów w katalogu '$katalog': $m \n"
-
 
 	y=`ls -l | grep ^- | tr -s ' ' | cut -d ' ' -f 3 | wc -l`
 	echo "Plików zwykłych, które są własnością osoby uruchamiającej skrypt: $y"
@@ -81,12 +80,4 @@ echo "Wszystkich plików zwykłych: $sumaF"
 echo "Wszystkich podkatalogów w katalogach: $sumaD"
 echo "Wszystkich plików zwykłych użytkownika: $sumaFU"
 echo "Wszystkich podkatalogów użytkowika: $sumaDU"
-
-
-
-
-
-
-
-
 
