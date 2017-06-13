@@ -1,0 +1,71 @@
+#!/bin/bash
+
+jak=$1
+katalog=$2
+
+sumaF=0
+sumaD=0
+sumaFU=0
+sumaDU=0
+
+if [ -z $jak ]
+then
+	echo -ne "Nie podałeś argumentów. Podaj je w formacie: <klucz do srotowania> <katalog> ... ('START' rozpoczyna wykonywanie skryptu) \n~>\n"
+	
+fi
+
+while [ -n "$jak" ] 
+do
+
+
+if [ "$jak" == "a" ]
+then
+	res=`ls | sort`
+	echo $res
+elif [ "$jak" == "ra" ]
+then
+	res=`ls | sort -r`
+	echo $res
+else
+	echo "Błędny parametr do sortowania."
+fi
+
+
+	n=`ls -l | grep ^- | wc -l`
+	echo "Plików zwykłych w katalogu '$katalog': $n"
+
+	m=`ls -l | grep ^d | wc -l`
+	echo -ne "Podkatalogów w katalogu '$katalog': $m \n"
+
+
+	y=`ls -l | grep ^- | tr -s ' ' | cut -d ' ' -f 3 | wc -l`
+	echo "Plików zwykłych, które są własnością osoby uruchamiającej skrypt: $y"
+
+	x=`ls -l | grep ^d | tr -s ' ' | cut -d ' ' -f 3 | wc -l`
+	echo -ne "Katalogów, które są własnośćią osoby uruchamiającej skrypt: $x\n\n"
+
+
+	(( sumaF += n ))
+	(( sumaD += m ))
+	(( sumaFU += y ))
+	(( sumaDU += x ))
+
+shift 2
+jak=$1
+katalog=$2
+done
+
+echo "Zbiorczo:"
+echo "Wszystkich plików zwykłych: $sumaF"
+echo "Wszystkich podkatalogów w katalogach: $sumaD"
+echo "Wszystkich plików zwykłych użytkownika: $sumaFU"
+echo "Wszystkich podkatalogów użytkowika: $sumaDU"
+
+
+
+
+
+
+
+
+

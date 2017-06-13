@@ -1,0 +1,23 @@
+#!/ibn/bash
+
+path=$1
+timer=$2
+
+if [[ $timer != [0-9]+ ]]
+then
+	shift 2
+else
+	$timer=0.1
+	shift 1
+fi
+
+cmd=$@
+content=`cat $path`
+while [ $newcontent = $content ]
+do
+	sleep $timer
+	newcontent=`cat $path`
+done
+
+eval $cmd
+
