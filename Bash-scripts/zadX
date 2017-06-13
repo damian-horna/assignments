@@ -18,7 +18,8 @@ then
 		echo "Klucz ('START' zeby zakonczyc):" ; read key
 
 		if [ "$key" == "START" ]
-		then ; break
+		then 
+		       	break
 		else
 			set -- "${@:1:$((i-1))}" "$key" "${@:$i}"
 			((i++))
