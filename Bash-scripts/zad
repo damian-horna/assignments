@@ -1,0 +1,90 @@
+#!/bin/bash
+
+jak=$1
+katal=$2
+
+sumF=0
+sumD=0
+sumUser=0
+
+if [ -z "$jak" ]
+then
+	i=2
+	echo "You haven't provided any arguments for the script."
+	echo "Provide the arguments in the following format: <key for listing> <directory> ..."
+	echo "Typing 'START' in the 'Key' section will launch the script."
+	while true
+	do
+		echo "Key (a/ra): " ; read key
+		
+		if [ "$key" == "START" ]
+		then
+			break
+		else
+			set -- "${@:1:$((i-1))}" "$key" "${@:$i}"
+			((i++))
+
+			echo "Directory: " ; read dir
+
+			set -- "${@:1:$((i-1))}" "$dir" "${@:$i}"
+			((i++))
+		fi
+	done
+
+fi
+
+jak=$1
+katal=$2
+
+
+while [ -n "$jak"  ]
+do
+	if [ ! -d $katal ]
+	then 
+		echo -ne "ERROR: Directory '$katal' does not exist! Execution aborted. \n"
+		exit 1
+	fi
+
+	if [ "$jak" == "a" ]
+	then
+		res=`ls $katal | sort`
+		echo -ne "Alpha (for directory: '$katal'): \n$res \n"
+	elif [ "$jak" == "ra" ]
+	then
+		res=`ls $katal | sort -r`
+		echo -ne "Reversed-alpha (for directory: '$katal'): \n$res \n"
+	else
+		echo "Wrong parameter for sorting!"	
+	fi
+
+	n=`ls $katal -l | grep ^- | wc -l`
+	m=`ls $katal -l | grep ^d | wc -l`
+	numOfFiles=0
+
+	for file in `ls $katal`
+	do
+		if [ -O "$katal/$file" -a -f "$katal/$file" ]
+		then
+			((numOfFiles++))
+		fi
+	done
+
+	echo "Number of files in '$katal' : $n"
+	echo "Number of directories in '$katal' : $m"
+	echo -ne "Files from '$katal', which are owned by the user who launched the script: $numOfFiles\n\n"
+	
+	shift 2
+	jak=$1
+	katal=$2
+
+	((sumF+=n))
+	((sumD+=m))
+	((sumUser+=numOfFiles))
+
+done
+
+echo "Alltogether: "
+echo "Number of files in all given directories: $sumF"
+echo "Number of subdirectories in all given directories: $sumD"
+echo "Number of all files owned by the user who launched the script: $sumUser"
+
